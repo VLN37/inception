@@ -3,9 +3,16 @@ version: "3"
 services:
   nginx:
     build: ./requirements/nginx
+    container_name: nginx
     image: nginx
     ports:
       - 443:443
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
+    image: mariadb
+    ports:
+      - 3306:3306
   #container
     #build
     #ports
