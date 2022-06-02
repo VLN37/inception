@@ -7,7 +7,7 @@ down:
 	docker-compose -f ./srcs/docker-compose.yml down
 
 clean: down
-	docker image prune -y
-	docker network prune -y
+	docker image prune -f
+	docker network prune -f
 
 fclean: clean
