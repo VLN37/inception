@@ -1,8 +1,9 @@
-FROM debian:stable
+FROM debian:buster
 
-RUN apt update
-RUN apt install nginx -y
-RUN apt install iputils-ping -y
+RUN apt update && \
+    apt upgrade && \
+    apt install nginx -y && \
+    apt install iputils-ping -y
 
 COPY conf/server1.conf /etc/nginx/sites-available/
 
@@ -19,8 +20,3 @@ ENTRYPOINT [ "script.sh" ]
 CMD [ "nginx", "-g", "daemon off;" ]
 #
 # ENTRYPOINT [ "bash" ]
-
-
-# RUN apt install sudo -y
-# RUN ufw app list
-# RUN ufw allow 'Nginx HTTP'
