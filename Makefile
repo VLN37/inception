@@ -11,3 +11,5 @@ clean: down
 	docker network prune -f
 
 fclean: clean
+
+re: clean up

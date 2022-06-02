@@ -3,7 +3,8 @@ FROM debian:buster
 RUN apt update && \
     apt upgrade && \
     apt install nginx -y && \
-    apt install iputils-ping -y
+    apt install iputils-ping -y && \
+    apt install mariadb-client -y
 
 COPY conf/server1.conf /etc/nginx/sites-available/
 
@@ -11,12 +12,12 @@ RUN ln -s /etc/nginx/sites-available/server1.conf \
           /etc/nginx/sites-enabled/server1.conf
 
 
-COPY tools/script.sh /usr/bin/
-RUN chmod a+x /usr/bin/script.sh && \
-    ./usr/bin/script.sh
+COPY tools/nginx.sh /usr/bin/
+RUN chmod a+x /usr/bin/nginx.sh && \
+    ./usr/bin/nginx.sh
 EXPOSE 443
 
-ENTRYPOINT [ "script.sh" ]
+ENTRYPOINT [ "nginx.sh" ]
 CMD [ "nginx", "-g", "daemon off;" ]
 #
 # ENTRYPOINT [ "bash" ]
