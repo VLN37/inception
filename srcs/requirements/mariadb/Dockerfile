@@ -8,11 +8,11 @@ RUN chmod a+x /usr/bin/mariadb.sh
 
 RUN echo "\n[mariadb]\nbind-address=0.0.0.0\nport=3306\n" >> /etc/mysql/my.cnf
 RUN echo "socket=/var/lib/mysql/mysql.sock\n" >> /etc/mysql/my.cnf
-
+RUN mariadb.sh
 
 EXPOSE 3306
 
-ENTRYPOINT [ "mariadb.sh" ]
-CMD [ "mysqld_safe" ]
+# ENTRYPOINT [ "mariadb.sh" ]
+# CMD [ "mysqld_safe" ]
 
-# ENTRYPOINT [ "script.sh" ]
+ENTRYPOINT [ "mysqld_safe" ]
