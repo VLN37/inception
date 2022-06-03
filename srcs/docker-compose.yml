@@ -7,6 +7,9 @@ services:
     image: nginx
     ports:
       - 443:443
+    networks:
+      - network-nginx
+      - network-mariadb
   mariadb:
     build: ./requirements/mariadb
     container_name: mariadb
@@ -14,6 +17,16 @@ services:
     # restart: unless-stopped
     ports:
       - 3306:3306
+    networks:
+      - network-mariadb
+
+networks:
+  network-nginx:
+    driver: bridge
+    name: network-nginx
+  network-mariadb:
+    driver: bridge
+    name: network-mariadb
   #container
     #build
     #ports
