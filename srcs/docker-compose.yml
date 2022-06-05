@@ -18,11 +18,29 @@ services:
       - 3306:3306
     networks:
       - network-42
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: wordpress
+    image: wordpress
+    ports:
+      - 9000:9000
+    volumes:
+      - wordpress:/var/www/jofelipe/wordpress
+    # volumes:
+    #   - type: bind
+    #     source: /home/jofelipe/data/wordpress
+    #     target: /var/www/html/
+    networks:
+      - network-42
 
 networks:
   network-42:
     driver: bridge
     name: network-42
-  #container
-    #build
-    #ports
+volumes:
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/jofelipe/data/wordpress

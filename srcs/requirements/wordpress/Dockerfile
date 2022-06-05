@@ -13,9 +13,14 @@ RUN apt install -y wget \
     php7.3-mysql \
     php7.3-mbstring
 
-# RUN wget https://wordpress.org/latest.zip && \
-#     mkdir /var/www/html/jofelipe && \
-#     unzip latest.zip && \
-#     mv wordpress/* /var/www/html/jofelipe
+RUN wget https://wordpress.org/latest.zip
+RUN unzip latest.zip
+RUN mkdir -p /var/www/jofelipe
+RUN mv wordpress /var/www/jofelipe
 
-ENTRYPOINT [ "bash" ]
+EXPOSE 9000
+
+ENTRYPOINT [ "tail" ]
+CMD [ "-f" ]
+
+# CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]

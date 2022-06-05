@@ -1,5 +1,3 @@
-
-
 up:
 	docker-compose -f ./srcs/docker-compose.yml up -d
 
@@ -13,3 +11,6 @@ clean: down
 fclean: clean
 
 re: clean up
+
+restart:
+		docker-compose -f ./srcs/docker-compose.yml restart
