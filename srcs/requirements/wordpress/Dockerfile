@@ -18,9 +18,12 @@ RUN unzip latest.zip
 RUN mkdir -p /var/www/jofelipe
 RUN mv wordpress /var/www/jofelipe
 
+
+RUN mkdir -p /var/run/php
+
 EXPOSE 9000
 
-ENTRYPOINT [ "tail" ]
-CMD [ "-f" ]
+# ENTRYPOINT [ "tail" ]
+# CMD [ "-f" ]
 
-# CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]
+ENTRYPOINT ["/usr/sbin/php-fpm7.3", "--nodaemonize"]
