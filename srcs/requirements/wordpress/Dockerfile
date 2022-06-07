@@ -17,8 +17,9 @@ RUN wget https://wordpress.org/latest.zip
 RUN unzip latest.zip
 RUN mkdir -p /var/www/jofelipe
 RUN mv wordpress /var/www/jofelipe
+# RUN chown -R www-data:www-data /var/www/html/h2s
 
-
+RUN echo "\nlisten = 9000\n" >> /etc/php/7.3/fpm/pool.d/www.conf
 RUN mkdir -p /var/run/php
 
 EXPOSE 9000

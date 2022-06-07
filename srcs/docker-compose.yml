@@ -2,6 +2,8 @@ version: "3"
 
 services:
   nginx:
+    depends_on:
+      - wordpress
     build: ./requirements/nginx
     container_name: nginx
     image: nginx
@@ -9,6 +11,8 @@ services:
       - 443:443
     networks:
       - network-42
+    volumes:
+      - wordpress:/var/www/jofelipe/wordpress
   mariadb:
     build: ./requirements/mariadb
     container_name: mariadb

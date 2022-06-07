@@ -1,5 +1,7 @@
+ARGS ?=
+
 up:
-	docker-compose -f ./srcs/docker-compose.yml up -d
+	docker-compose -f ./srcs/docker-compose.yml up -d $(ARGS)
 
 down:
 	docker-compose -f ./srcs/docker-compose.yml down

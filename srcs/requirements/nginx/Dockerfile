@@ -11,7 +11,6 @@ COPY conf/server1.conf /etc/nginx/sites-available/
 RUN ln -s /etc/nginx/sites-available/server1.conf \
           /etc/nginx/sites-enabled/server1.conf
 
-
 COPY tools/nginx.sh /usr/bin/
 RUN chmod a+x /usr/bin/nginx.sh && \
     ./usr/bin/nginx.sh
