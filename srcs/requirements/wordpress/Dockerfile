@@ -13,6 +13,8 @@ RUN apt install -y wget \
     php7.3-mysql \
     php7.3-mbstring
 
+
+
 RUN wget https://wordpress.org/latest.zip
 RUN unzip latest.zip
 RUN mkdir -p /var/www/jofelipe
@@ -21,6 +23,15 @@ RUN mv wordpress /var/www/jofelipe
 
 RUN echo "\nlisten = 9000\n" >> /etc/php/7.3/fpm/pool.d/www.conf
 RUN mkdir -p /var/run/php
+
+ARG MYSQL_PASSWORD
+ARG MYSQL_DB_NAME
+ARG MYSQL_USER
+ARG MYSQL_HOST
+WORKDIR /var/www/jofelipe/wordpress
+COPY tools/wordpress.sh /usr/bin/
+RUN chmod a+x /usr/bin/wordpress.sh
+RUN wordpress.sh
 
 EXPOSE 9000
 
