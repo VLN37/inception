@@ -24,11 +24,11 @@ RUN mv wordpress /var/www/jofelipe
 RUN echo "\nlisten = 9000\n" >> /etc/php/7.3/fpm/pool.d/www.conf
 RUN mkdir -p /var/run/php
 
+WORKDIR /var/www/jofelipe/wordpress
 ARG MYSQL_PASSWORD
 ARG MYSQL_DB_NAME
 ARG MYSQL_USER
 ARG MYSQL_HOST
-WORKDIR /var/www/jofelipe/wordpress
 COPY tools/wordpress.sh /usr/bin/
 RUN chmod a+x /usr/bin/wordpress.sh
 RUN wordpress.sh
