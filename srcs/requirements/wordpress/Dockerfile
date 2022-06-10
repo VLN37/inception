@@ -11,8 +11,8 @@ RUN apt install -y wget \
     php7.3-curl \
     php7.3-gd \
     php7.3-mysql \
-    php7.3-mbstring
-
+    php7.3-mbstring \
+    php7.3-phar
 
 
 RUN wget https://wordpress.org/latest.zip
@@ -25,6 +25,7 @@ RUN echo "\nlisten = 9000\n" >> /etc/php/7.3/fpm/pool.d/www.conf
 RUN mkdir -p /var/run/php
 
 WORKDIR /var/www/jofelipe/wordpress
+RUN apt install curl
 ARG MYSQL_PASSWORD
 ARG MYSQL_DB_NAME
 ARG MYSQL_USER
@@ -33,9 +34,14 @@ COPY tools/wordpress.sh /usr/bin/
 RUN chmod a+x /usr/bin/wordpress.sh
 RUN wordpress.sh
 
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod a+x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/
+
 EXPOSE 9000
 
 # ENTRYPOINT [ "tail" ]
 # CMD [ "-f" ]
 
-ENTRYPOINT ["/usr/sbin/php-fpm7.3", "--nodaemonize"]
+ENTRYPOINT [ "wordpress.sh" ]
+CMD [ "/usr/sbin/php-fpm7.3", "--nodaemonize" ]
