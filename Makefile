@@ -9,12 +9,12 @@ down:
 clean: down
 	docker image prune -f
 	docker network prune -f
+
+fclean: clean
 	docker volume rm srcs_wordpress
 	docker volume rm srcs_mariadb
 	sudo rm -rf /home/jofelipe/data/mariadb/*
 	sudo rm -rf /home/jofelipe/data/wordpress/*
-
-fclean: clean
 
 re: clean up
 

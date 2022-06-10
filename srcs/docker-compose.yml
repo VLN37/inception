@@ -2,6 +2,7 @@ version: "3"
 
 services:
   nginx:
+    restart: unless-stopped
     depends_on:
       - wordpress
     build:
@@ -20,19 +21,18 @@ services:
       - wordpress:/var/www/jofelipe/wordpress
 
   mariadb:
+    restart: unless-stopped
     build:
       context: ./requirements/mariadb
     container_name: mariadb
     image: mariadb
-    # restart: unless-stopped
     volumes:
       - mariadb:/var/lib/mysql
-    ports:
-      - 3306:3306
     networks:
       - network-42
 
   wordpress:
+    restart: unless-stopped
     depends_on:
       - mariadb
     env_file:
@@ -46,8 +46,6 @@ services:
         - MYSQL_HOST=${MYSQL_HOST}
     container_name: wordpress
     image: wordpress
-    ports:
-      - 9000:9000
     volumes:
       - wordpress:/var/www/jofelipe/wordpress
     networks:
