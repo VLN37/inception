@@ -12,7 +12,4 @@ RUN echo "socket=/var/lib/mysql/mysql.sock\n" >> /etc/mysql/my.cnf
 RUN mariadb.sh
 EXPOSE 3306
 
-# ENTRYPOINT [ "mariadb.sh" ]
-# CMD [ "mysqld_safe" ]
-
 ENTRYPOINT [ "mysqld_safe" ]

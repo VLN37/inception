@@ -16,8 +16,6 @@ config:
 	sudo cat /etc/hosts | grep jofelipe || echo $(DOMAIN) >> /etc/hosts
 	sudo chmod 644 /etc/hosts
 
-
-
 clean: down
 	docker image prune -f
 	docker network prune -f

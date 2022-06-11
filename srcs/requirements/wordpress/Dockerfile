@@ -34,7 +34,8 @@ COPY tools/wordpress.sh /usr/bin/
 RUN chmod a+x /usr/bin/wordpress.sh
 RUN wordpress.sh
 
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN curl -O \
+    https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod a+x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/
 

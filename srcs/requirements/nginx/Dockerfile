@@ -24,5 +24,3 @@ EXPOSE 443
 
 ENTRYPOINT [ "nginx" ]
 CMD [ "-g", "daemon off;" ]
-#
-# ENTRYPOINT [ "bash" ]
