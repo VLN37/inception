@@ -13,7 +13,7 @@ config:
 	sudo chmod 777 /home/jofelipe/data/mariadb
 	sudo chmod 777 /home/jofelipe/data/wordpress
 	sudo chmod 777 /etc/hosts
-	sudo cat /etc/hosts | grep jofelipe || echo $(DOMAIN) >> /etc/hosts
+	sudo cat /etc/hosts | grep calc || echo $(DOMAIN) >> /etc/hosts
 	sudo chmod 644 /etc/hosts
 
 clean: down
