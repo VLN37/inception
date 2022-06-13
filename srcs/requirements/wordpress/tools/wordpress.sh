@@ -7,10 +7,11 @@ sed -i "s/username_here/$MYSQL_USER/" wp-config-sample.php
 mv wp-config-sample.php wp-config.php
 
 if ! wp core is-installed --allow-root --path=/var/www/jofelipe/wordpress; then
-/usr/local/bin/wp-cli.phar core install \
---url=https://localhost \
+wp core install \
+--url=https://jofelipe.42.fr \
 --title=42 --admin_user=jofelipe \
 --admin_email=jofelipe@student.42.fr \
+--admin_password=123 \
 --allow-root
 fi
 
