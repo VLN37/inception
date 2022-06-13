@@ -39,6 +39,9 @@ RUN curl -O \
 RUN chmod a+x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/
 
+RUN mkdir ../calc
+COPY conf/ ../calc
+
 EXPOSE 9000
 
 # ENTRYPOINT [ "tail" ]

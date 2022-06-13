@@ -1,5 +1,5 @@
 ARGS ?=
-DOMAIN = "127.0.0.1 jofelipe.42.fr"
+DOMAIN = "127.0.0.1 jofelipe.42.fr\n127.0.0.1 calc.42.fr"
 
 up: config
 	docker-compose -f ./srcs/docker-compose.yml up -d $(ARGS)
