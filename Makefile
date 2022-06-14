@@ -1,5 +1,6 @@
 ARGS ?=
-DOMAIN = "127.0.0.1 jofelipe.42.fr\n127.0.0.1 calc.42.fr"
+DOMAIN1 = "127.0.0.1 jofelipe.42.fr"
+DOMAIN2 = "127.0.0.1 calc.42.fr"
 
 up: config
 	docker-compose -f ./srcs/docker-compose.yml up -d $(ARGS)
@@ -13,7 +14,8 @@ config:
 	sudo chmod 777 /home/jofelipe/data/mariadb
 	sudo chmod 777 /home/jofelipe/data/wordpress
 	sudo chmod 777 /etc/hosts
-	sudo cat /etc/hosts | grep calc || echo $(DOMAIN) >> /etc/hosts
+	sudo cat /etc/hosts | grep jofelipe || echo $(DOMAIN1) >> /etc/hosts
+	sudo cat /etc/hosts | grep calc || echo $(DOMAIN2) >> /etc/hosts
 	sudo chmod 644 /etc/hosts
 
 clean: down
